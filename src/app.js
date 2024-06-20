@@ -30,11 +30,17 @@ export default async function app(appDiv) {
   // renderNewUserForm;
 
   // Fetch the books!
-  // const books =
+  const books = await getFirstThreeFantasyBooks();
+  console.log(books);
   // render out the books
   // renderBookList
+  renderBookList(bookListEl, books)
 
-  // bookListEl.addEventListener('???', () => {})
+  bookListEl.addEventListener('click', async (e) => {
+    const l = e.target;
+    const author = await getAuthor(l.dataset.authorUrlKey);
+    renderAuthorInfo(authorInfoEl, author)
+  })
 
   // newUserFormEl.addEventListener('???', () => {})
 }
