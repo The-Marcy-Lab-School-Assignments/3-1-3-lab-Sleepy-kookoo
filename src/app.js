@@ -28,7 +28,7 @@ export default async function app(appDiv) {
   appDiv.append(newUserFormEl);
   // Render the form!
   // renderNewUserForm;
-
+  renderNewUserForm(newUserFormEl)
   // Fetch the books!
   const books = await getFirstThreeFantasyBooks();
   console.log(books);
@@ -42,5 +42,16 @@ export default async function app(appDiv) {
     renderAuthorInfo(authorInfoEl, author)
   })
 
-  // newUserFormEl.addEventListener('???', () => {})
+  newUserFormEl.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(newUserFormEl);
+    const newUser = Object.fromEntries(formData);
+
+    const createdUser = await createNewUser(newUser);
+
+    if (createdUser) {
+      renderNewUser(newUserEl, createdUser);
+    }
+  })
 }

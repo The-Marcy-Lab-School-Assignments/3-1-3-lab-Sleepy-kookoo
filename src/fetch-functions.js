@@ -46,13 +46,36 @@ export const getAuthor = async (urlKey) => {
       pictureUrl: `https://covers.openlibrary.org/a/id/${data.photos[0]}-M.jpg`,
     }
 
+    console.log(obj)
     return obj
+
+  } catch (error) {
+    console.warn(error)
+    return null
+  }
+};
+
+export const createNewUser = async (newUser) => {
+  try {
+    const response = await fetch('https://jsonplaceholder.typicode.com/users', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newUser)
+    });
+
+    if (!response.ok) {
+      console.log(new Error(`Failed to create new user`))
+      throw new Error(`Failed to create new user`)
+    }
+
+    const data = await response.json()
+    console.log(data)
+    return data
 
   } catch (error) {
     console.warn(error.message)
     return null
   }
-};
-
-export const createNewUser = () => {
 }
