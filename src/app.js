@@ -40,6 +40,12 @@ export default async function app(appDiv) {
     const l = e.target;
     const author = await getAuthor(l.dataset.authorUrlKey);
     renderAuthorInfo(authorInfoEl, author)
+    /*
+    FEEDBACK:
+    While this works great, since the event listener is on the entire list of books,
+    we want to have an if statement so that this code would only run when one of the buttons were clicked. 
+    In order to do this, u can use .matches on the e.target, or check the tagname of it
+    */
   })
 
   newUserFormEl.addEventListener('submit', async (e) => {

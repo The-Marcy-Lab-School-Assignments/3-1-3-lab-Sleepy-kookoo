@@ -13,6 +13,12 @@ export const renderBookList = (bookListEl, books) => {
     p.textContent = `Title: ${book.title}`
 
     button.textContent = `View ${book.author.name}`;
+    /*
+    FEEDBACK:
+    Below this comment, you have two lines of code that both set the data-author-url-key attribute on the button. 
+    Although both methods are correct, they achieve the same result. 
+    You can safely remove one of these lines and should still pass the test cases.
+    */
     button.setAttribute(`data-author-url-key`, book.author.urlKey);
     button.dataset.authorUrlKey = book.author.urlKey;
 
@@ -97,6 +103,11 @@ export const renderNewUserForm = (newUserFormEl) => {
   submitButton.textContent = "Create User";
 
   newUserFormEl.append(usernameLabel, usernameInput, isCoolLabel, isCoolInput, favLangLabel, favLangSelect, submitButton);
+  /*
+  FEEDBACK: 
+  Great job on this! A lot of attention to detail1
+  For future reference, you can also use .innerHTML on the newUserFormEl to save some time
+  */
 }
 
 export const renderNewUser = (newUserEl, newUser) => {
